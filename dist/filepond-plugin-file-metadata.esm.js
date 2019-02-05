@@ -1,8 +1,10 @@
 /*
- * FilePondPluginFileMetadata 1.0.2
+ * FilePondPluginFileMetadata 1.0.3
  * Licensed under MIT, https://opensource.org/licenses/MIT
  * Please visit https://pqina.nl/filepond for details.
  */
+
+/* eslint-disable */
 var plugin$1 = ({ addFilter, utils }) => {
   // get quick reference to Type utils
   const { Type } = utils;
@@ -19,7 +21,7 @@ var plugin$1 = ({ addFilter, utils }) => {
   addFilter(
     'DID_LOAD_ITEM',
     (item, { query }) =>
-      new Promise((resolve, reject) => {
+      new Promise(resolve => {
         if (!query('GET_ALLOW_FILE_METADATA')) {
           return resolve(item);
         }
@@ -32,7 +34,6 @@ var plugin$1 = ({ addFilter, utils }) => {
           });
         }
 
-        // done!
         resolve(item);
       })
   );
@@ -48,8 +49,10 @@ var plugin$1 = ({ addFilter, utils }) => {
   };
 };
 
-if (typeof navigator !== 'undefined' && document) {
-  // plugin has loaded
+const isBrowser =
+  typeof window !== 'undefined' && typeof window.document !== 'undefined';
+
+if (isBrowser) {
   document.dispatchEvent(
     new CustomEvent('FilePond:pluginloaded', { detail: plugin$1 })
   );
