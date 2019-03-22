@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilePond Plugin File Encode Demo</title>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- The plugin allows adding metadata using data attributes -->
+    <input type="file" data-file-metadata-foo="bar"/>
+    
+    <script src="./dist/filepond-plugin-file-metadata.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    
+    <script>
+        // Register the plugin with FilePond
+        FilePond.registerPlugin(FilePondPluginFileMetadata);
+
+        // Get a reference to the file input element
+        const inputElement = document.querySelector('input[type="file"]');
+
+        // Create the FilePond instance
+        const pond = FilePond.create(inputElement, {
+            
+            // Add metadata using a metadata object property
+            fileMetadataObject: {
+                'hello': 'world'
+            }
+        });
+
+        // Request encoded data
+        pond.onaddfile = (err, item) => {
+
+            if (err) {
+                console.warn(err);
+                return;
+            }
+            
+            // Get file item metadata
+            const metadata = item.getMetadata();
+
+            // Log the metadata to the console so we can verify it's there
+            console.log(metadata);
+        }
+    </script>
+
+</body>
+</html>

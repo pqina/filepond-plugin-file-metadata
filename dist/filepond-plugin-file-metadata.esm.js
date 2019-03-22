@@ -1,11 +1,12 @@
-/*
- * FilePondPluginFileMetadata 1.0.3
- * Licensed under MIT, https://opensource.org/licenses/MIT
+/*!
+ * FilePondPluginFileMetadata 1.0.4
+ * Licensed under MIT, https://opensource.org/licenses/MIT/
  * Please visit https://pqina.nl/filepond for details.
  */
 
 /* eslint-disable */
-var plugin$1 = ({ addFilter, utils }) => {
+
+const plugin = ({ addFilter, utils }) => {
   // get quick reference to Type utils
   const { Type } = utils;
 
@@ -28,7 +29,7 @@ var plugin$1 = ({ addFilter, utils }) => {
 
         // get default object and add as metadata
         const data = query('GET_FILE_METADATA_OBJECT');
-        if (typeof data === 'object') {
+        if (typeof data === 'object' && data !== null) {
           Object.keys(data).forEach(key => {
             item.setMetadata(key, data[key]);
           });
@@ -49,13 +50,13 @@ var plugin$1 = ({ addFilter, utils }) => {
   };
 };
 
+// fire pluginloaded event if running in browser, this allows registering the plugin when using async script tags
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined';
-
 if (isBrowser) {
   document.dispatchEvent(
-    new CustomEvent('FilePond:pluginloaded', { detail: plugin$1 })
+    new CustomEvent('FilePond:pluginloaded', { detail: plugin })
   );
 }
 
-export default plugin$1;
+export default plugin;
