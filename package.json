@@ -1,13 +1,13 @@
 {
     "name": "filepond-plugin-file-metadata",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "File Metadata Plugin for FilePond",
     "license": "MIT",
     "author": {
         "name": "PQINA",
-        "url": "https://pqina.nl"
+        "url": "https://pqina.nl/"
     },
-    "homepage": "https://pqina.nl/filepond",
+    "homepage": "https://pqina.nl/filepond/",
     "repository": "pqina/filepond-plugin-file-metadata",
     "main": "dist/filepond-plugin-file-metadata.js",
     "browser": "dist/filepond-plugin-file-metadata.js",

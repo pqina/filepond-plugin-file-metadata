@@ -22,7 +22,7 @@ const plugin = ({ addFilter, utils }) => {
     const data = query('GET_FILE_METADATA_OBJECT');
     if (typeof data === 'object' && data !== null) {
       Object.keys(data).forEach(key => {
-        item.setMetadata(key, data[key]);
+        item.setMetadata(key, data[key], true);
       });
     }
 
